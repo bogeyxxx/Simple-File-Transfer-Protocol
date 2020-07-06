@@ -1,0 +1,136 @@
+6.	TEST EVIDENCES
+6.1.	Test1
+Purpose – Testing local commands (with remote ceto server) such as lpwd, ldir and lcd.
+Explanation – The output shows that all local commands are executed correctly. 
+
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2$ ./myftp ceto.murdoch.edu.au
+client[1]: > cd
+client[1]: send cd
+client[1]: receive /home/student/accounts/32944371
+client[2]: >
+client[2]: > pwd
+client[2]: send pwd
+client[2]: receive /home/student/accounts/32944371
+
+
+6.2.	Test2
+Purpose – Testing server commands (with remote ceto server) such as pwd, dir and cd. 
+Explanation – The output shows that all commands are executed correctly in the server and the server response with successful output.
+
+client[3]: > ldir
+ser myftpd.c myftpd myftp .. foo myftp.c myftp.c.bak myftpd.o testing.log cli
+client[4]: > lpwd
+Current directory : /home/kwangming/ict374/Assignment2/Assignment2
+client[5]: > lcd
+/home/kwangming
+
+
+32944371@ceto:~/ict374/Assignment2$ server[1]: receive cd
+server[1]: send /home/student/accounts/32944371
+server[2]: receive pwd
+server[2]: send /home/student/accounts/32944371
+
+
+6.3.	Test3
+Purpose – Testing “get” command (with remote ceto server) 
+Explanation – The output shows that client type get command together with the file name to download that file from the server. The program successfully find the file in server side and copy it to client current directory. 
+
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2/cli$ ./myftp
+client[1]: > put cli
+file cli
+nr 7
+Hello!
+
+client[1]: send Hello!
+
+file closed
+client[2]: > get ser
+client[2]: send getser
+Hello!
+client[2]: receive Hello!
+client[2]: file closed
+
+
+6.4.	Test4
+Purpose – Testing “put” command (with remote ceto server) 
+Explanation – The output shows that client type “put” command together with the file name to send that file from the client current directory to server side. 
+
+server[3]: send /home/kwangming
+server[4]: receive putcli
+file cli
+server[4]: send cli
+
+
+6.5.	Test5
+Purpose – Testing local commands (on same machine) such as lpwd, ldir and lcd.
+Explanation – The output shows that all local commands are executed correctly. 
+
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2$ ./myftp localhost
+client[1]: > cd
+client[1]: send cd
+client[1]: receive /home/kwangming
+client[2]: > dir
+client[2]: send dir
+client[2]: receive Desktop . .exrc .composer .config Murdoch_University.png Pictures .sudo_as_admin_successful ict374 Templates .profile .. Videos .local .wget-hsts Documents .cache privateKey ict302 Downloads Music .bash_logout .ssh export.sql .bash_history .gnupg .ICEauthority .bashrc lesser .mysql_history
+client[3]: > pwd
+client[3]: send pwd
+client[3]: receive /home/kwangming
+client[4]: > lcd
+/home/kwangming
+client[5]: > ldir
+Desktop . .exrc .composer .config Murdoch_University.png Pictures .sudo_as_admin_successful ict374 Templates .profile .. Videos .local .wget-hsts Documents .cache privateKey ict302 Downloads Music .bash_logout .ssh export.sql .bash_history .gnupg .ICEauthority .bashrc lesser .mysql_history
+client[6]: > lpwd
+Current directory : /home/kwangming
+client[7]: > put cli
+file cli
+file closed
+
+6.6.	Test6
+Purpose – Testing server commands (on same machine) such as pwd, dir and cd. 
+Explanation – The output shows that all commands are executed correctly in the server and the server response with successful output.
+
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2$ ./myftpd
+Server PID: 3451
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2$ server[1]: receive cd
+server[1]: send /home/kwangming
+server[2]: receive dir
+Desktop . .exrc .composer .config Murdoch_University.png Pictures .sudo_as_admin_successful ict374 Templates .profile .. Videos .local .wget-hsts Documents .cache privateKey ict302 Downloads Music .bash_logout .ssh export.sql .bash_history .gnupg .ICEauthority .bashrc lesser .mysql_history
+server[2]: send Desktop . .exrc .composer .config Murdoch_University.png Pictures .sudo_as_admin_successful ict374 Templates .profile .. Videos .local .wget-hsts Documents .cache privateKey ict302 Downloads Music .bash_logout .ssh export.sql .bash_history .gnupg .ICEauthority .bashrc lesser .mysql_history
+server[3]: receive pwd
+server[3]: send /home/kwangming
+server[4]: receive putcli
+file cli
+server[4]: send cli
+getser
+server[4]: receive getser
+
+6.7.	Test7
+Purpose – Testing “get” command (on same machine) 
+Explanation – The output shows that client type get command together with the file name to download that file from the server. The program successfully find the file in server side and copy it to client current directory. 
+
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2/ser$ ./myftpd
+Server PID: 3015
+kwangming@SCHOOL:~/ict374/Assignment2/Assignment2/ser$ server[1]: receive putcli
+file cli
+server[1]: send cli
+server[2]: receive Hello!
+server[2]: send Hello!
+server[3]: receive getser
+file s
+
+6.8.	Test8
+Purpose – Testing “put” command (with remote ceto server) 
+Explanation – The output shows that client type “put” command together with the file name to send that file from the client current directory to server side. The program successfully upload the file to server. 
+
+client[4]: > lcd
+/home/kwangming
+client[5]: > ldir
+Desktop . .exrc .composer .config Murdoch_University.png Pictures .sudo_as_admin_successful ict374 Templates .profile .. Videos .local .wget-hsts Documents .cache privateKey ict302 Downloads Music .bash_logout .ssh export.sql .bash_history .gnupg .ICEauthority .bashrc lesser .mysql_history
+client[6]: > lpwd
+Current directory : /home/kwangming
+client[7]: > put cli
+file cli
+file closed
+
+
+
