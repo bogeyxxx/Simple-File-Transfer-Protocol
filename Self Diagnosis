@@ -1,0 +1,14 @@
+3.1.	List of functions that are fully functional.
+
+pwd – a FTP command to show the current directory path of the server side. This command is successfully executed by the server and replied with the directory of the server that is serving the client.
+Lpwd – a command to show current directory path of the client machine, fully functional.
+Dir – a FTP command to show the list of the file name under the current directory of the server side. This command successfully retrieves all the files inside the current directory of server side. 
+Ldir – a command to show the list of file name under the current directory of the server side. This command successfully retrieves all the files inside the current directory of local machine.
+cd directory_pathname – a simple command to change the current directory of the server to destination directory that user entered. This command successfully allow user to change directory. It also supports “.” and “..” notations. 
+lcd directory_pathname – a simple command to change the current directory of the client to requested directory that user entered. This command successfully allow user to change directory. It also supports “.” and “..” notations.
+get filename – downloading file from current directory of remote server and save it to the current directory of the client. This command successfully gets the file that user entered and copies to the current directory of the client. 
+quit – when use type quit, it will terminate the program. 
+
+3.2.	List of functions that are not fully functional.
+
+put filename – uploading the named file from client side to server side. This command works when I tested on the same machine. But for some reason, it doesn’t work on ceto server. 
